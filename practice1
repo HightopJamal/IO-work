@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace exampleCh11_10
+{
+    class Prices
+    {
+        static void Main(string[] args)
+        {
+            String line, item;
+            int quantity;
+            double price, cost;
+            StreamReader sr = new StreamReader("prices.txt");
+            StreamWriter sw = new StreamWriter("totalCost.data");
+            while ((line = sr.ReadLine()) != null)
+            {
+                String[] strings = line.Split();
+                if (strings.Length == 3)
+                {
+                    item = strings[0];
+                    quantity = int.Parse(strings[1]);
+                    price = double.Parse(strings[2]);
+                    cost = price * quantity;
+                    Console.WriteLine("Total cost of {0} is {1:C}", item, cost);
+                    sw.WriteLine("{0} {1:F2}", item, cost);
+                }
+            }
+            sr.Close();
+            sw.Close();
+        }
+    }
+}
