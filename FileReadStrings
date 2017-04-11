@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace openFilePractice
+{
+    
+
+            public class FileReadStrings {
+
+                public static void Main( ) {
+
+                String line;
+
+
+                StreamReader sr = null;
+                StreamWriter sw = null;
+               
+
+                try
+                {
+
+                    sr = new StreamReader("../../openFilePractice.cs");
+                     sw = new StreamWriter("myProgram.txt");
+
+                    while ((line = sr.ReadLine()) != null)
+
+                        Console.WriteLine(line);
+                        sw.WriteLine(line);
+                }
+                catch (IOException e)
+                {
+
+                    Console.WriteLine(e);
+
+                }
+
+                finally
+                {
+                    if (sw != null)
+                    sw.Close();
+                }
+
+                    
+
+}
+
+    }
+        }
+   
