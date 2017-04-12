@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace Assignment9_Daniel
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string line, subject;
+            double total, average;
+            
+            StreamReader f = new StreamReader("sourceScores.txt");
+            StreamWriter report = new StreamWriter("scoresReport.txt");
+
+            Console.WriteLine( f.ReadLine());
+
+            while ((line = f.ReadLine()) != null)
+            {
+                String[] strings = line.Split();
+                if (strings.Length == 3)
+                {
+                    subject = strings[0];
+                    total = double.Parse(strings[2]);
+                    
+                    average = total/5;
+                    Console.WriteLine("{0}\t{1}\t{2}", strings[0], strings[1], strings[2]);
+
+                    
+                }
+            }
+            f.Close();
+            report.Close();
+            
+        }
+    }
+}
