@@ -11,31 +11,36 @@ namespace Assignment9_Daniel
     {
         static void Main(string[] args)
         {
-            string line, subject;
+            string line;
             double total, average;
-            
+            double Mon, Tue, Thur;
+
             StreamReader f = new StreamReader("sourceScores.txt");
             StreamWriter report = new StreamWriter("scoresReport.txt");
 
-            Console.WriteLine( f.ReadLine());
+            Console.WriteLine(f.ReadLine());
 
             while ((line = f.ReadLine()) != null)
             {
                 String[] strings = line.Split();
-                if (strings.Length == 3)
-                {
-                    subject = strings[0];
-                    total = double.Parse(strings[2]);
-                    
-                    average = total/5;
-                    Console.WriteLine("{0}\t{1}\t{2}", strings[0], strings[1], strings[2]);
 
-                    
-                }
+                total = Math.Round(double.Parse(strings[0]) + double.Parse(strings[1]) + double.Parse(strings[2]));
+                average = Math.Round(total / strings.Length);
+
+
+                Mon = double.Parse(strings[2]);
+                Tue = double.Parse(strings[2]);
+                Thur = double.Parse(strings[2]);
+
+                average = total / 5;
+                Console.WriteLine("{0}\t{1}\t{2}", Mon, Tue, Thur);
+
+
             }
+
             f.Close();
             report.Close();
-            
+
         }
     }
 }
