@@ -11,35 +11,42 @@ namespace Assignment9_Daniel
     {
         static void Main(string[] args)
         {
-            string line;
-            double total, average;
-            double Mon, Tue, Thur;
+            String line;
+            
+            double mT= 0, rT = 0, wT = 0, tot, avg;
 
-            StreamReader f = new StreamReader("sourceScores.txt");
-            StreamWriter report = new StreamWriter("scoresReport.txt");
+            StreamReader sr = new StreamReader("sourceScores.txt");
+            StreamWriter sw = new StreamWriter("scoresReport.txt");
 
-            Console.WriteLine(f.ReadLine());
-
-            while ((line = f.ReadLine()) != null)
+            sw.WriteLine(sr.ReadLine() + "\tTotal\tAverage\n-----------------------");
+            while ((line = sr.ReadLine()) != null)
             {
                 String[] strings = line.Split();
+                if (strings.Length == 3)
+                {
+                 
+                    mT += double.Parse(strings[0]);
+                    rT += double.Parse(strings[1]);
+                    wT += double.Parse(strings[2]);
 
-                total = Math.Round(double.Parse(strings[0]) + double.Parse(strings[1]) + double.Parse(strings[2]));
-                average = Math.Round(total / strings.Length);
+                    tot = mT + rT + wT;
+                    avg = Math.Round(tot / strings.Length);
+
+                    sw.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\n", strings[0], strings[1], strings[2], tot, avg);
 
 
-                Mon = double.Parse(strings[2]);
-                Tue = double.Parse(strings[2]);
-                Thur = double.Parse(strings[2]);
 
-                average = total / 5;
-                Console.WriteLine("{0}\t{1}\t{2}", Mon, Tue, Thur);
-
-
+                    sw.WriteLine("{0}\t{1}\t{2}\n", mT, rT, wT);
+                    sw.WriteLine("{0}\t{1}\t{2}\n", Math.Round(mT / 5), Math.Round(rT / 5), Math.Round(wT / 5));
+                }
             }
 
-            f.Close();
-            report.Close();
+
+
+            
+
+            sr.Close();
+            sw.Close();
 
         }
     }
